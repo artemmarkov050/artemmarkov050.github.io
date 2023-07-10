@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .scrollable-area {
+      max-height: 500px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+    <div class="form-wrap">
+        <div class="profile"><img src="https://html5book.ru/wp-content/uploads/2016/10/profile-image.png">
+          <h1>Создание заказа</h1>
+        </div>
+        <form method="post" action="form.php">
+          <div>
+            <label for="name">Имя, фамилия и отчество</label>
+            <input type="text" name="full_name" required>
+          </div>
+          <div>
+            <label for="address">Адрес СДЕК</label>
+            <input type="text" name="address" required>
+          </div>
+          <div>
+            <label for="phone">Номер телефона</label>
+            <input type="tel" name="phone" required>
+          </div>
+          <div class="scrollable-area">
+            <div>
+              <label for="product">Название изделия 1</label>
+              <select name="product1">
+                <option>Выберите изделие</option>
+                <option value="Хвост ВОГ17">Хвост ВОГ17</option> 
+                <option value="Накольник">Накольник</option> 
+                <option value="Хвост ВОГ25">Хвост ВОГ25</option> 
+                <option value="Хвост Ф1">Хвост Ф1</option>
+                <option value="Накольник Ф1">Накольник Ф1</option>
+              </select> 
+              <input type="number" name="quantity1" placeholder="Количество" min="1">
+              <div class="select-arrow"></div> 
+            </div>
+            <!-- Повторите блок с выбором названия и количества до 15 раз -->
+          </div>
+          <button type="button" onclick="addProduct()">Добавить изделие</button> 
+          <button type="submit">Отправить</button> 
+        </form> 
+      </div>  
+<script>
+function addProduct() {
+  var additionalProducts = document.querySelector(".scrollable-area");
+  var productNumber = additionalProducts.childElementCount + 1;
+
+  var div = document.createElement("div");
+  var productLabel = document.createElement("label");
+  productLabel.setAttribute("for", "product" + productNumber);
+  productLabel.textContent = "Название изделия " + productNumber;
+  var productSelect = document.createElement("select");
+  productSelect.setAttribute("name", "product" + productNumber);
+  var defaultOption = document.createElement("option");
+  defaultOption.textContent = "Выберите изделие";
+  productSelect.appendChild(defaultOption);
+  var option1 = document.createElement("option");
+  option1.setAttribute("value", "Хвост ВОГ17");
+  option1.textContent = "Хвост ВОГ17";
+  productSelect.appendChild(option1);
+  var option2 = document.createElement("option");
+  option2.setAttribute("value", "Накольник");
+  option2.textContent = "Накольник";
+  productSelect.appendChild(option2);
+  var option3 = document.createElement("option");
+  option3.setAttribute("value", "Хвост ВОГ25");
+  option3.textContent = "Хвост ВОГ25";
+  productSelect.appendChild(option3);
+  var option4 = document.createElement("option");
+  option4.setAttribute("value", "Хвост Ф1");
+  option4.textContent = "Хвост Ф1";
+  productSelect.appendChild(option4);
+  var option5 = document.createElement("option");
+  option5.setAttribute("value", "Накольник Ф1");
+  option5.textContent = "Накольник Ф1";
+  productSelect.appendChild(option5);
+
+  var quantityInput = document.createElement("input");
+  quantityInput.setAttribute("type", "number");
+  quantityInput.setAttribute("name", "quantity" + productNumber);
+  quantityInput.setAttribute("placeholder", "Количество");
+  quantityInput.setAttribute("min", "1");
+
+  var selectArrow = document.createElement("div");
+  selectArrow.setAttribute("class", "select-arrow");
+
+  div.appendChild(productLabel);
+  div.appendChild(productSelect);
+  div.appendChild(quantityInput);
+  div.appendChild(selectArrow);
+
+  additionalProducts.appendChild(div);
+}
+</script>
+</body>
+</html>
